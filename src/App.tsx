@@ -5,16 +5,13 @@ function App() {
   const options: OptionConfig[] = [
     {
       label: "Subscriptions search",
-      description: "banana",
     },
     {
       label: "Show queue full time",
-      description: "banana",
       onToggle: () => console.log("banana"),
     },
     {
       label: "Subscriptions order filters",
-      description: "banana",
     },
   ];
 

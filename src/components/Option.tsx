@@ -6,6 +6,7 @@ export default function Option({ label, onToggle, description }: OptionConfig) {
   const [enabled, setEnabled] = useState(false);
   //TODO: make sure disabled options have a specific style showing they are disabled
   //TODO: Figure out colors and fonts
+  //TODO: add a popover for description that shows when needed
 
   return (
     <Switch.Group>
@@ -25,9 +26,6 @@ export default function Option({ label, onToggle, description }: OptionConfig) {
           />
         </Switch>
       </div>
-      <Switch.Label className="mr-4 text-sm text-timberwolf">
-        {description}
-      </Switch.Label>
     </Switch.Group>
   );
 }
