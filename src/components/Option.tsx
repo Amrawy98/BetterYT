@@ -7,10 +7,11 @@ export default function Option({ label, onToggle, description }: OptionConfig) {
   //TODO: make sure disabled options have a specific style showing they are disabled
   //TODO: Figure out colors and fonts
   //TODO: add a popover for description that shows when needed
+  //TODO: figure out vertical alignment for the switches
 
   return (
     <Switch.Group>
-      <div className="flex items-center justify-between text-base text-timberwolf">
+      <div className="x mb-1 flex items-center justify-between text-base text-timberwolf">
         <Switch.Label className="mr-4">{label}</Switch.Label>
         <Switch
           checked={enabled}
