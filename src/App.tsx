@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Option from "./components/Option";
 import { OptionConfig } from "./types";
 
@@ -7,7 +6,6 @@ function App() {
     {
       label: "Subscriptions search",
       description: "banana",
-      onToggle: () => console.log("banana"),
     },
     {
       label: "Show queue full time",
@@ -17,7 +15,6 @@ function App() {
     {
       label: "Subscriptions order filters",
       description: "banana",
-      onToggle: () => console.log("banana"),
     },
   ];
 

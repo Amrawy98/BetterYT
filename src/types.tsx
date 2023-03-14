@@ -1,5 +1,5 @@
 export type OptionConfig = {
-  onToggle: () => void;
+  onToggle?: () => void;
   label: string;
   description?: string;
 };

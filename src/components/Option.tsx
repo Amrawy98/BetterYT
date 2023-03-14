@@ -4,6 +4,8 @@ import { OptionConfig } from "../types";
 
 export default function Option({ label, onToggle, description }: OptionConfig) {
   const [enabled, setEnabled] = useState(false);
+  //TODO: make sure disabled options have a specific style showing they are disabled
+  //TODO: Figure out colors and fonts
 
   return (
     <Switch.Group>
@@ -11,7 +13,7 @@ export default function Option({ label, onToggle, description }: OptionConfig) {
         <Switch.Label className="mr-4">{label}</Switch.Label>
         <Switch
           checked={enabled}
-          onChange={setEnabled}
+          onChange={onToggle && setEnabled}
           className={`${
             enabled ? "bg-fern-green" : "bg-gray-500"
           } relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2`}
