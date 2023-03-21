@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Option from "./components/Option";
 import useSettings from "./hooks/useSettings";
 import { setting } from "./types";
@@ -26,7 +27,10 @@ function App() {
     // },
   ];
   const [settings, setSettings] = useSettings();
-  console.log("settings", settings);
+
+  useEffect(() => {
+    chrome.runtime.sendMessage(settings);
+  }, [settings]);
 
   return (
     <div className="h-[300px] w-[250px] bg-delft-blue p-2">
