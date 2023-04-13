@@ -8,7 +8,8 @@
   "content_scripts": [
     {
       "js": ["src/contentScript/main.tsx"],
-      "matches": ["https://www.google.com/"]
+      "run_at": "document_end",
+      "matches": ["https://*.youtube.com/*"]
     }
   ],
   "background": {
