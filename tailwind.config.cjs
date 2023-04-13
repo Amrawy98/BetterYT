@@ -9,6 +9,7 @@ module.exports = {
         "seal-brown": "#512500",
         sage: "#A3B18A",
         timberwolf: "#DAD7CD",
+        "youtube-font": "#AAA",
       },
     },
   },
