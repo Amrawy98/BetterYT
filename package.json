@@ -10,24 +10,25 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.13",
+    "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "usehooks-ts": "^2.9.1"
   },
   "devDependencies": {
-    "@crxjs/vite-plugin": "^2.0.0-beta.14",
-    "@types/chrome": "^0.0.224",
-    "@types/react": "^18.0.27",
-    "@types/react-dom": "^18.0.10",
-    "@vitejs/plugin-react-swc": "^3.0.0",
+    "@crxjs/vite-plugin": "^2.0.0-beta.15",
+    "@types/chrome": "^0.0.225",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "@vitejs/plugin-react": "^3.1.0",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.21",
-    "prettier": "^2.8.4",
-    "prettier-plugin-tailwindcss": "^0.2.4",
+    "prettier": "^2.8.7",
+    "prettier-plugin-tailwindcss": "^0.2.7",
     "rollup-plugin-zip": "^1.0.3",
     "tailwindcss": "^3.2.7",
     "typescript": "^4.9.3",
-    "vite": "^4.1.0",
-    "vite-tsconfig-paths": "^4.0.5"
+    "vite": "^4.2.0",
+    "vite-tsconfig-paths": "^4.0.7"
   }
 }
