@@ -4,6 +4,10 @@ import getPlaylistSum from "./utils/getPlaylistSum";
 import Loading from "./Components/Loading";
 
 function App() {
+  // TODO: use datafns instead of moment
+  // TODO: update manifest to run content script when page is loaded check:
+  // * https://html.spec.whatwg.org/#dom-document-readystate
+  // * https://developer.chrome.com/docs/extensions/mv2/content_scripts/
   const [timeNodeList, setTimeNodeList] = useState<NodeListOf<Element>>(
     document.querySelectorAll("#asdkajsklfdjashdlfaasldfkjhasd")
   );
