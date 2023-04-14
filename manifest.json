@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Scriptor",
+  "name": "BetterYT",
   "permissions": ["storage", "tabs", "scripting", "activeTab"],
   "host_permissions": ["https://*.youtube.com/*"],
   "version": "1.0.0",
