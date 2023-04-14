@@ -1,41 +1,29 @@
-import moment, { Moment } from "moment";
+import { Duration } from "../Types/Duration";
 
-function formatDuration(duration: moment.Duration): string {
-  if (duration.asMilliseconds() === 0) {
-    return "";
-  }
-  const days = Math.floor(duration.asDays());
-  const hours = Math.floor(duration.hours()) + days * 24;
-  const minutes = Math.floor(duration.minutes());
-  const seconds = Math.floor(duration.seconds());
-
-  const formattedDuration = `${hours.toString().padStart(2, "0")}:${minutes
-    .toString()
-    .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
-
-  return formattedDuration;
-}
-
-function getVideoTime(first: number, second: number, third: number) {
-  const totalSeconds = third
-    ? first * 3600 + second * 60 + third
-    : first * 60 + second;
-
-  return totalSeconds;
-}
-
-function getPlaylistSum(timeNodeList: NodeListOf<Element>): string {
-  const timeElements: Array<HTMLElement> = Array.from(
-    timeNodeList
-  ) as Array<HTMLElement>;
-  const totalSeconds = timeElements.reduce((acc, el, index) => {
-    const [first, second, third] = el.innerText.split(":").map(Number);
-    return acc + getVideoTime(first, second, third);
+function getTotalDurationString(timeNodeList: NodeListOf<HTMLElement>): string {
+  const totalSeconds = Array.from(timeNodeList).reduce((acc, el) => {
+    const {
+      0: hours = 0,
+      1: minutes = 0,
+      2: seconds = 0,
+    } = el.innerText.split(":").map(Number);
+    return acc + hours * 3600 + minutes * 60 + seconds;
   }, 0);
-  const totalDuration = moment.duration(totalSeconds, "seconds");
-  // format the duration in the desired format
-  const formattedDuration = formatDuration(totalDuration);
+
+  const totalDuration: Duration = {
+    days: Math.floor(totalSeconds / (3600 * 24)),
+    hours: Math.floor((totalSeconds % (3600 * 24)) / 3600),
+    minutes: Math.floor((totalSeconds % 3600) / 60),
+    seconds: totalSeconds % 60,
+  };
+
+  const formattedDuration = `${(totalDuration.hours + totalDuration.days * 24)
+    .toString()
+    .padStart(2, "0")}h ${totalDuration.minutes
+    .toString()
+    .padStart(2, "0")}m ${totalDuration.seconds.toString().padStart(2, "0")}s`;
+
   return formattedDuration;
 }
 
-export default getPlaylistSum;
+export default getTotalDurationString;

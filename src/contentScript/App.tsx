@@ -4,11 +4,10 @@ import getPlaylistSum from "./utils/getPlaylistSum";
 import Loading from "./Components/Loading";
 
 function App() {
-  // TODO: use datafns instead of moment
   // TODO: update manifest to run content script when page is loaded check:
   // * https://html.spec.whatwg.org/#dom-document-readystate
   // * https://developer.chrome.com/docs/extensions/mv2/content_scripts/
-  const [timeNodeList, setTimeNodeList] = useState<NodeListOf<Element>>(
+  const [timeNodeList, setTimeNodeList] = useState<NodeListOf<HTMLElement>>(
     document.querySelectorAll("#asdkajsklfdjashdlfaasldfkjhasd")
   );
   const isFirst = useIsFirstRender();
@@ -18,14 +17,18 @@ function App() {
 
   if (isFirst) {
     setTimeout(() => {
-      const elements = document.querySelectorAll(timeElementsPath);
+      const elements = document.querySelectorAll(
+        timeElementsPath
+      ) as NodeListOf<HTMLElement>;
       console.log("initial elements", elements.length);
       setTimeNodeList(elements);
     }, 1000);
   }
 
   const interval = setInterval(() => {
-    const elements = document.querySelectorAll(timeElementsPath);
+    const elements = document.querySelectorAll(
+      timeElementsPath
+    ) as NodeListOf<HTMLElement>;
     console.log("interval elements", elements.length);
     if (timeNodeList.length === elements.length) clearInterval(interval);
     else {
