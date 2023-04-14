@@ -18,4 +18,9 @@ function init() {
   }, 100);
 }
 
-init();
+// Wait for the DOM to finish loading before running the init function
+if (document.readyState === "complete") {
+  init();
+} else {
+  window.addEventListener("load", init);
+}
