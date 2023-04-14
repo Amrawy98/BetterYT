@@ -1,5 +1,5 @@
 const Loading = () => (
-  <div className="flex h-full items-center justify-center p-2">
+  <div className="flex h-full items-center p-2">
     <svg
       className="h-10 w-10 animate-spin text-youtube-font"
       viewBox="0 0 24 24"
