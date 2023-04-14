@@ -3,11 +3,14 @@ import { Duration } from "../Types/Duration";
 function getTotalDurationString(timeNodeList: NodeListOf<HTMLElement>): string {
   const totalSeconds = Array.from(timeNodeList).reduce((acc, el) => {
     const {
-      0: hours = 0,
-      1: minutes = 0,
-      2: seconds = 0,
+      0: first = 0,
+      1: second = 0,
+      2: third,
     } = el.innerText.split(":").map(Number);
-    return acc + hours * 3600 + minutes * 60 + seconds;
+    console.log(first, second, third);
+    return (
+      acc + (third ? first * 3600 + second * 60 + third : first * 60 + second)
+    );
   }, 0);
   if (totalSeconds === 0) return "";
   const totalDuration: Duration = {
