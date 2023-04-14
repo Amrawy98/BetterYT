@@ -9,7 +9,7 @@ function getTotalDurationString(timeNodeList: NodeListOf<HTMLElement>): string {
     } = el.innerText.split(":").map(Number);
     return acc + hours * 3600 + minutes * 60 + seconds;
   }, 0);
-
+  if (totalSeconds === 0) return "";
   const totalDuration: Duration = {
     days: Math.floor(totalSeconds / (3600 * 24)),
     hours: Math.floor((totalSeconds % (3600 * 24)) / 3600),
