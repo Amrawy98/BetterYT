@@ -13,7 +13,7 @@ function App() {
   const isFirst = useIsFirstRender();
 
   const timeElementsPath =
-    "#items.playlist-items.style-scope.ytd-playlist-panel-renderer ytd-thumbnail-overlay-time-status-renderer span";
+    "#content #items.playlist-items.style-scope.ytd-playlist-panel-renderer ytd-thumbnail-overlay-time-status-renderer span";
 
   if (isFirst) {
     setTimeout(() => {
@@ -35,15 +35,15 @@ function App() {
   }, 3000);
   const playListTime = getPlaylistSum(timeNodeList);
   return (
-    <>
+    <div>
       {playListTime ? (
-        <div className=" p-2 text-xl leading-4 text-youtube-font">
-          - Total Time: {playListTime}
+        <div className="w-[306px] overflow-hidden truncate py-2 text-start text-xl leading-4 text-youtube-font">
+          Total Time: {playListTime}
         </div>
       ) : (
         <Loading />
       )}
-    </>
+    </div>
   );
 }
 
