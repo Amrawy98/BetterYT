@@ -20,7 +20,6 @@ function App() {
       const elements = document.querySelectorAll(
         timeElementsPath
       ) as NodeListOf<HTMLElement>;
-      console.log("initial elements", elements.length);
       setTimeNodeList(elements);
     }, 1000);
   }
@@ -29,7 +28,6 @@ function App() {
     const elements = document.querySelectorAll(
       timeElementsPath
     ) as NodeListOf<HTMLElement>;
-    console.log("interval elements", elements.length);
     if (timeNodeList.length === elements.length) clearInterval(interval);
     else {
       setTimeNodeList(elements);
