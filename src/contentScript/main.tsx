@@ -4,7 +4,7 @@ import App from "./App";
 import "./index.css";
 
 function init() {
-  const rootId = "crx-root";
+  const rootId = "playlist-better-yt";
   const root = document.createElement("div");
   root.id = rootId;
   const targetNode = document.querySelectorAll("#header-description")[1];
