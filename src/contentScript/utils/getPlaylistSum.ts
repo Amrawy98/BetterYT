@@ -7,7 +7,6 @@ function getTotalDurationString(timeNodeList: NodeListOf<HTMLElement>): string {
       1: second = 0,
       2: third,
     } = el.innerText.split(":").map(Number);
-    console.log(first, second, third);
     return (
       acc + (third ? first * 3600 + second * 60 + third : first * 60 + second)
     );
