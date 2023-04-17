@@ -3,24 +3,42 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
 
-/**
- TODO: fix the disappearing youtube icon and the styles that get broken
- TODO: track user made queues an track when a vide is added
- */
-
 function init() {
+  const rootId = "crx-root";
   const root = document.createElement("div");
-  root.id = "crx-root";
-  setTimeout(() => {
-    document.querySelectorAll("#header-description")[1].appendChild(root);
-    ReactDOM.createRoot(
-      document.querySelector("#crx-root") as HTMLElement
-    ).render(
+  root.id = rootId;
+  const targetNode = document.querySelectorAll("#header-description")[1];
+  if (targetNode) {
+    console.log(targetNode, document.querySelectorAll("#header-description"));
+    targetNode.appendChild(root);
+    ReactDOM.createRoot(root).render(
       <React.StrictMode>
         <App />
       </React.StrictMode>
     );
-  }, 1000);
+  } else {
+    const observer = new MutationObserver((mutationsList) => {
+      for (const mutation of mutationsList) {
+        if (mutation.type === "childList") {
+          const targetNode = document.querySelectorAll(
+            "#header-description"
+          )[1];
+          if (targetNode) {
+            observer.disconnect();
+            if (!document.getElementById(rootId)) {
+              targetNode.appendChild(root);
+              ReactDOM.createRoot(root).render(
+                <React.StrictMode>
+                  <App />
+                </React.StrictMode>
+              );
+            }
+          }
+        }
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+  }
 }
 
 // Wait for the DOM to finish loading before running the init function

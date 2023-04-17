@@ -1,39 +1,40 @@
-import { useState } from "react";
-import { useIsFirstRender } from "usehooks-ts";
+import { useState, useEffect } from "react";
 import getPlaylistSum from "./utils/getPlaylistSum";
 import Loading from "./Components/Loading";
 
 function App() {
-  // TODO: update manifest to run content script when page is loaded check:
-  // * https://html.spec.whatwg.org/#dom-document-readystate
-  // * https://developer.chrome.com/docs/extensions/mv2/content_scripts/
   const [timeNodeList, setTimeNodeList] = useState<NodeListOf<HTMLElement>>(
     document.querySelectorAll("#asdkajsklfdjashdlfaasldfkjhasd")
   );
-  const isFirst = useIsFirstRender();
 
-  const timeElementsPath =
-    "#content #items.playlist-items.style-scope.ytd-playlist-panel-renderer ytd-thumbnail-overlay-time-status-renderer span";
+  useEffect(() => {
+    // Create the observer with a callback function
+    const observer = new MutationObserver((mutationsList) => {
+      for (let mutation of mutationsList) {
+        if (mutation.type === "childList") {
+          // The content of the observed element has changed
+          const elements = document.querySelectorAll(
+            "#content #items.playlist-items.style-scope.ytd-playlist-panel-renderer ytd-thumbnail-overlay-time-status-renderer span"
+          ) as NodeListOf<HTMLElement>;
+          // console.log("Observer elements", elements);
+          setTimeNodeList(elements);
+        }
+      }
+    });
 
-  if (isFirst) {
-    setTimeout(() => {
-      const elements = document.querySelectorAll(
-        timeElementsPath
-      ) as NodeListOf<HTMLElement>;
-      setTimeNodeList(elements);
-    }, 1000);
-  }
-
-  const interval = setInterval(() => {
-    const elements = document.querySelectorAll(
-      timeElementsPath
-    ) as NodeListOf<HTMLElement>;
-    if (timeNodeList.length === elements.length) clearInterval(interval);
-    else {
-      setTimeNodeList(elements);
+    // Start observing changes in the target node
+    const targetNode = document.getElementById("content");
+    const observerConfig = { childList: true, subtree: true };
+    if (targetNode) {
+      observer.observe(targetNode, observerConfig);
     }
-  }, 3000);
+
+    // Remove the observer when the component is unmounted
+    return () => observer.disconnect();
+  }, []);
+
   const playListTime = getPlaylistSum(timeNodeList);
+
   return (
     <div>
       {playListTime ? (
