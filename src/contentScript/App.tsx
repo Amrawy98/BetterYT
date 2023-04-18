@@ -16,7 +16,6 @@ function App() {
           const elements = document.querySelectorAll(
             "#content #items.playlist-items.style-scope.ytd-playlist-panel-renderer ytd-thumbnail-overlay-time-status-renderer span"
           ) as NodeListOf<HTMLElement>;
-          // console.log("Observer elements", elements);
           setTimeNodeList(elements);
         }
       }

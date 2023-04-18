@@ -9,7 +9,6 @@ function init() {
   root.id = rootId;
   const targetNode = document.querySelectorAll("#header-description")[1];
   if (targetNode) {
-    console.log(targetNode, document.querySelectorAll("#header-description"));
     targetNode.appendChild(root);
     ReactDOM.createRoot(root).render(
       <React.StrictMode>
