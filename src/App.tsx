@@ -29,7 +29,13 @@ function App() {
   const [settings, setSettings] = useSettings();
 
   useEffect(() => {
-    chrome.runtime.sendMessage(settings);
+    // chrome.runtime.sendMessage(settings);
+    // chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    //   if (tabs[0].id) {
+    //     chrome.tabs.sendMessage(tabs[0].id, { settings: settings });
+    //   }
+    // });
+    console.log(settings);
   }, [settings]);
 
   return (
